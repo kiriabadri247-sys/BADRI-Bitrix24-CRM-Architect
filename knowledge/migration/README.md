@@ -180,7 +180,7 @@ Source responsibility -> Target role -> Object scope -> Actions
 | Telephony | Provider, numbers, routes, CRM link | Joint cutover and fallback |
 | Sites/forms | Endpoint, fields, consent, source | Synthetic submission |
 
-Точные REST-методы проверяются в [официальном справочнике](https://apidocs.bitrix24.ru/api-reference/), локальные сценарии — в [официальной документации](https://apidocs.bitrix24.ru/local-integrations/index.html). Секреты не копируются в migration mapping или Git.
+Точные REST-методы проверяются в [официальном справочнике](https://apidocs.bitrix24.ru/api-reference/), локальные сценарии — в [официальной документации](https://apidocs.bitrix24.ru/local-integrations/). Секреты не копируются в migration mapping или Git.
 
 ## 10. Data Migration
 
@@ -563,7 +563,7 @@ Infrastructure compatibility -> Full backup -> Isolated rehearsal
 | [Поддержка24](https://helpdesk.bitrix24.ru/) | Официальная пользовательская документация / высокий | Объекты, настройки, импорт/экспорт и ограничения продукта |
 | [Документация REST API](https://apidocs.bitrix24.ru/) | Официальная документация разработчика / критический | Архитектура API, webhooks и OAuth |
 | [REST API reference](https://apidocs.bitrix24.ru/api-reference/) | Официальный справочник / критический | Методы, поля, параметры и ошибки |
-| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) | Официальная документация / критический | Webhook и локальные сценарии |
+| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) | Официальная документация / критический | Webhook и локальные сценарии |
 | [Смарт-процессы](https://helpdesk.bitrix24.ru/open/18913884/) | Официальная статья / высокий | Smart Processes и целевая модель |
 | [Варианты подключения телефонии](https://helpdesk.bitrix24.ru/open/6450911/) | Официальная статья / высокий | Телефонный cutover и provider context |
 | [Наборы данных BI](https://helpdesk.bitrix24.ru/open/24355590/) | Официальная статья / высокий | BI datasets и аналитическая сверка |

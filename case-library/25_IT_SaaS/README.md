@@ -632,7 +632,7 @@ Each ADR has owner, status proposed/accepted/superseded, date, context, alternat
 - [Официальная пользовательская документация Bitrix24](https://helpdesk.bitrix24.ru/) — CRM, tasks, rights, automation and Cloud.
 - [Официальная документация REST API](https://apidocs.bitrix24.ru/) — integrations, authorization and limits.
 - [REST API reference](https://apidocs.bitrix24.ru/api-reference/) — methods, parameters and scopes.
-- [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) — official integration tooling.
+- [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) — official integration tooling.
 - [Смарт-процессы](https://helpdesk.bitrix24.ru/open/18913884/) — Smart Process creation and configuration.
 - [Роботы и триггеры](https://helpdesk.bitrix24.ru/open/24633726/) — штатная automation.
 - [Бизнес-процессы](https://helpdesk.bitrix24.ru/open/23951294/) — process type selection.

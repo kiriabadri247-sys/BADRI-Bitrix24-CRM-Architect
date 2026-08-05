@@ -484,7 +484,7 @@ Requirements → ADR → Contract/mapping → Build → Test → Pilot
 |---|---|---|
 | [Bitrix24 REST API](https://apidocs.bitrix24.ru/) | REST, auth, events, limits, batch | 2026-08-05 |
 | [Справочник API](https://apidocs.bitrix24.ru/api-reference/) | Методы, поля, scope, errors | 2026-08-05 |
-| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) | Официальные local scenarios | 2026-08-05 |
+| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) | Официальные local scenarios | 2026-08-06 |
 | [Developer Hub](https://github.com/bitrix24/bitrix24-dev-hub) | Official SDK/examples | 2026-08-05 |
 | [REST docs repository](https://github.com/bitrix24/b24restdocs) | Documentation history; not copied | 2026-08-05 |
 | [PHP SDK](https://github.com/bitrix24/b24phpsdk) | Official SDK; API contract has priority | 2026-08-05 |

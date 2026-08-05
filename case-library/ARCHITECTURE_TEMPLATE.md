@@ -999,7 +999,7 @@ Optimization
 - [Поддержка24](https://helpdesk.bitrix24.ru/) — штатные возможности, интерфейс и тарифные оговорки.
 - [Bitrix24 REST API](https://apidocs.bitrix24.ru/) — архитектура интеграций и авторизации.
 - [Справочник REST API](https://apidocs.bitrix24.ru/api-reference/) — точные методы, параметры, события и scopes.
-- [Инструменты локальных интеграций](https://apidocs.bitrix24.ru/local-integrations/index.html) — официальный интеграционный инструментарий.
+- [Инструменты локальных интеграций](https://apidocs.bitrix24.ru/local-integrations/) — официальный интеграционный инструментарий.
 - [Битрикс24 Маркетплейс](https://www.bitrix24.ru/apps/) — наличие приложений; качество, безопасность и поддержку оценивать отдельно.
 - [Документация On-Premise](https://dev.1c-bitrix.ru/docs/portal.php) — модули, API и безопасное расширение коробочной версии.
 - [Роботы и триггеры](https://helpdesk.bitrix24.ru/open/24633726/) — проверка штатной автоматизации.

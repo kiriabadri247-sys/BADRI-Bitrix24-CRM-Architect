@@ -569,7 +569,7 @@ Scope → read-only evidence → findings/risk → remediation → retest
 | [Поддержка24](https://helpdesk.bitrix24.ru/) | Пользователи, права и актуальные функции | 2026-08-05 |
 | [Bitrix24 REST API](https://apidocs.bitrix24.ru/) | REST/OAuth/webhooks/apps | 2026-08-05 |
 | [API reference](https://apidocs.bitrix24.ru/api-reference/) | Scope, methods, events and errors | 2026-08-05 |
-| [Local integrations](https://apidocs.bitrix24.ru/local-integrations/index.html) | Official integration models | 2026-08-05 |
+| [Local integrations](https://apidocs.bitrix24.ru/local-integrations/) | Official integration models | 2026-08-06 |
 | [Marketplace](https://www.bitrix24.ru/apps/) | App inventory/source | 2026-08-05 |
 | [Telephony](https://helpdesk.bitrix24.ru/open/6450911/) | Connection security context | 2026-08-05 |
 | [BI datasets](https://helpdesk.bitrix24.ru/open/24355590/) | Analytics access context | 2026-08-05 |

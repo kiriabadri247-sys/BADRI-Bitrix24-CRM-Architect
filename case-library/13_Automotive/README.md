@@ -646,7 +646,7 @@ Inventory -> Backup/Export -> Test Configuration -> Synthetic Tests -> UAT
 - [Официальная пользовательская документация Bitrix24](https://helpdesk.bitrix24.ru/) — CRM, настройки, права, автоматизация, телефония и Cloud-возможности.
 - [Официальная документация REST API](https://apidocs.bitrix24.ru/) — авторизация, методы и ограничения REST.
 - [REST API reference](https://apidocs.bitrix24.ru/api-reference/) — подтверждение конкретных методов и параметров перед разработкой.
-- [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) — официальные варианты локальных интеграций.
+- [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) — официальные варианты локальных интеграций.
 - [Смарт-процессы](https://helpdesk.bitrix24.ru/open/18913884/) — создание и базовая конфигурация Smart Processes.
 - [Роботы и триггеры](https://helpdesk.bitrix24.ru/open/24633726/) — штатная CRM-автоматизация.
 - [Бизнес-процессы](https://helpdesk.bitrix24.ru/open/23951294/) — выбор типа бизнес-процесса.
@@ -669,4 +669,3 @@ Inventory -> Backup/Export -> Test Configuration -> Synthetic Tests -> UAT
 8. Сервисные SLA, календари, расписание ресурсов и источник availability.
 9. Модель BI, grain, владельцев метрик, контрольные итоги и допустимую задержку.
 10. Test portal/pipeline, release window, допустимый простой, rollback и support RACI.
-

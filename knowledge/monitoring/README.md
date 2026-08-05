@@ -602,7 +602,7 @@ Cloud capacity контролируется через доступные при
 | [Поддержка24](https://helpdesk.bitrix24.ru/) | Официальная пользовательская документация / высокий | Доступные функции, настройки и ограничения Cloud |
 | [Документация REST API](https://apidocs.bitrix24.ru/) | Официальная документация разработчика / критический | REST, webhooks, OAuth и интеграционные границы |
 | [REST API reference](https://apidocs.bitrix24.ru/api-reference/) | Официальный справочник / критический | Методы, параметры и ошибки |
-| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) | Официальная документация / критический | Webhook и локальные интеграционные сценарии |
+| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) | Официальная документация / критический | Webhook и локальные интеграционные сценарии |
 | [Смарт-процессы](https://helpdesk.bitrix24.ru/open/18913884/) | Официальная статья / высокий | Контроль Smart Processes |
 | [Варианты подключения телефонии](https://helpdesk.bitrix24.ru/open/6450911/) | Официальная статья / высокий | Телефония и provider boundary |
 | [Наборы данных BI](https://helpdesk.bitrix24.ru/open/24355590/) | Официальная статья / высокий | BI datasets и аналитика |

@@ -652,7 +652,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 | [Поддержка24](https://helpdesk.bitrix24.ru/) | Пользовательские возможности CRM и Cloud |
 | [Документация REST API](https://apidocs.bitrix24.ru/) | Интеграционная архитектура и ограничения |
 | [REST API reference](https://apidocs.bitrix24.ru/api-reference/) | Проверка контрактов методов и полей |
-| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) | Проверка вариантов интеграционного доступа |
+| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) | Проверка вариантов интеграционного доступа |
 | [Смарт-процессы](https://helpdesk.bitrix24.ru/open/18913884/) | Проектирование customer, store, loyalty, return, service and campaign views |
 | [Роботы и триггеры](https://helpdesk.bitrix24.ru/open/24633726/) | Проверка automation |
 | [Как выбрать тип бизнес-процесса](https://helpdesk.bitrix24.ru/open/23951294/) | Выбор approval/orchestration механизма |

@@ -553,7 +553,7 @@ Dry-run возвращает количества `planned`, `unchanged`, `dupli
 | [Исходники документации REST API](https://github.com/bitrix24/b24restdocs) | История и структура официальной документации; содержимое не копировалось | 2026-08-05 |
 | [Bitrix24 Developer Hub](https://github.com/bitrix24/bitrix24-dev-hub) | Официальные SDK, примеры и инструменты | 2026-08-05 |
 | [Bitrix24 PHP SDK](https://github.com/bitrix24/b24phpsdk) | Официальный SDK; API-документация остаётся приоритетным контрактом | 2026-08-05 |
-| [Инструменты для локальных интеграций](https://apidocs.bitrix24.ru/local-integrations/index.html) | Официальные варианты локальной интеграции | 2026-08-05 |
+| [Инструменты для локальных интеграций](https://apidocs.bitrix24.ru/local-integrations/) | Официальные варианты локальной интеграции | 2026-08-06 |
 | [Как создать смарт-процесс](https://helpdesk.bitrix24.ru/open/18913884/) | Пользовательская модель смарт-процессов | 2026-08-05 |
 | [Как начать звонить из Bitrix24](https://helpdesk.bitrix24.ru/open/6450911/) | Архитектурный контекст телефонии | 2026-08-05 |
 | [Документация коробочного Bitrix24](https://dev.1c-bitrix.ru/docs/portal.php) | Особенности On-Premise | 2026-08-05 |

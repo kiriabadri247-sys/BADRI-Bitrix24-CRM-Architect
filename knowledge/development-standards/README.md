@@ -117,7 +117,7 @@ Validate -> Authorize -> Request -> HTTP/API validation -> State verification
 
 ## 6. Webhook Development
 
-Входящий webhook — secret-bearing REST URL; исходящее событие — недоверенный input до проверки. Конкретная модель подтверждается [официальной документацией локальных интеграций](https://apidocs.bitrix24.ru/local-integrations/index.html).
+Входящий webhook — secret-bearing REST URL; исходящее событие — недоверенный input до проверки. Конкретная модель подтверждается [официальной документацией локальных интеграций](https://apidocs.bitrix24.ru/local-integrations/).
 
 | ID | Стандарт |
 |---|---|
@@ -606,7 +606,7 @@ Developer -> Solution Architect -> Support -> Client owner
 | [Поддержка24](https://helpdesk.bitrix24.ru/) | Официальная пользовательская документация / высокий | Функции, настройки и продуктовые ограничения |
 | [Документация REST API](https://apidocs.bitrix24.ru/) | Официальная документация разработчика / критический | REST, OAuth, webhooks и приложения |
 | [REST API reference](https://apidocs.bitrix24.ru/api-reference/) | Официальный справочник / критический | Методы, параметры, поля и ошибки |
-| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) | Официальная документация / критический | Webhook development и локальные сценарии |
+| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) | Официальная документация / критический | Webhook development и локальные сценарии |
 | [Официальный Developer Hub](https://github.com/bitrix24/bitrix24-dev-hub) | Официальный GitHub / высокий | Навигация и официальные примеры без копирования репозитория |
 | [Официальный PHP SDK](https://github.com/bitrix24/b24phpsdk) | Официальный GitHub / высокий | SDK reference после проверки версии |
 | [Смарт-процессы](https://helpdesk.bitrix24.ru/open/18913884/) | Официальная статья / высокий | Smart Process development context |

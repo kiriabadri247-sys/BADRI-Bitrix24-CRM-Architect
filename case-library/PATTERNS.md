@@ -663,7 +663,7 @@ Client Task -> Context / Constraints -> Candidate Patterns
 - [Поддержка24](https://helpdesk.bitrix24.ru/) — пользовательские возможности, интерфейс, тарифные и облачные оговорки;
 - [Bitrix24 REST API](https://apidocs.bitrix24.ru/) — интеграционные принципы, авторизация and limits;
 - [REST API reference](https://apidocs.bitrix24.ru/api-reference/) — точные методы, поля, scopes and events;
-- [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) — официальный инструментарий;
+- [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) — официальный инструментарий;
 - [Smart Processes](https://helpdesk.bitrix24.ru/open/18913884/) — создание и конфигурация;
 - [Роботы и триггеры](https://helpdesk.bitrix24.ru/open/24633726/) — штатная automation;
 - [Бизнес-процессы](https://helpdesk.bitrix24.ru/open/23951294/) — выбор process type;

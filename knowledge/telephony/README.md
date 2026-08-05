@@ -445,7 +445,7 @@ Discovery → Scheme → Provider validation → Security review
 | [Поддержка24](https://helpdesk.bitrix24.ru/) | Актуальные пользовательские настройки и ограничения | 2026-08-05 |
 | [Bitrix24 REST API](https://apidocs.bitrix24.ru/) | Интеграционная архитектура и приложения | 2026-08-05 |
 | [Справочник REST API](https://apidocs.bitrix24.ru/api-reference/) | Проверка методов, событий, полей и scope | 2026-08-05 |
-| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) | Официальные варианты приложений | 2026-08-05 |
+| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) | Официальные варианты приложений | 2026-08-06 |
 | [Marketplace](https://www.bitrix24.ru/apps/) | Проверка официально опубликованных приложений | 2026-08-05 |
 | [Документация коробочного Bitrix24](https://dev.1c-bitrix.ru/docs/portal.php) | On-Premise | 2026-08-05 |
 

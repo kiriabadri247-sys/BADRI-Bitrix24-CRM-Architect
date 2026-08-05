@@ -640,7 +640,7 @@ Cloud: конфигурационный откат проектируется ч
 | [Поддержка24](https://helpdesk.bitrix24.ru/) | Пользовательские возможности CRM и Cloud |
 | [Документация REST API](https://apidocs.bitrix24.ru/) | Интеграционная архитектура, авторизация и ограничения |
 | [REST API reference](https://apidocs.bitrix24.ru/api-reference/) | Проверка контрактов конкретных методов и полей |
-| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) | Варианты интеграционного доступа после проверки применимости |
+| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) | Варианты интеграционного доступа после проверки применимости |
 | [Смарт-процессы](https://helpdesk.bitrix24.ru/open/18913884/) | Проектирование объектов, запросов, показов, броней и договоров |
 | [Роботы и триггеры](https://helpdesk.bitrix24.ru/open/24633726/) | Проверка доступной automation |
 | [Телефония](https://helpdesk.bitrix24.ru/open/6450911/) | Варианты подключения телефонии |

@@ -716,7 +716,7 @@ Traces и ручной replay реализуются внешними компо
 | [Поддержка24](https://helpdesk.bitrix24.ru/) | Официальная пользовательская документация / высокий | CRM, automation, права, Cloud-функции |
 | [Документация REST API](https://apidocs.bitrix24.ru/) | Официальная документация разработчика / критический | REST, webhooks, OAuth, события |
 | [REST API reference](https://apidocs.bitrix24.ru/api-reference/) | Официальный справочник / критический | Методы, поля, параметры и ошибки |
-| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) | Официальная документация / критический | Webhook и локальные сценарии |
+| [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) | Официальная документация / критический | Webhook и локальные сценарии |
 | [Смарт-процессы](https://helpdesk.bitrix24.ru/open/18913884/) | Официальная статья / высокий | Smart Process Pattern |
 | [Варианты подключения телефонии](https://helpdesk.bitrix24.ru/open/6450911/) | Официальная статья / высокий | Телефония и provider boundary |
 | [Наборы данных BI](https://helpdesk.bitrix24.ru/open/24355590/) | Официальная статья / высокий | Analytics/Data Quality/Observability |

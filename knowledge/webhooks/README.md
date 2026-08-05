@@ -363,7 +363,7 @@ Many portals / product / delegated install ──> OAuth application
 Browser-only with long-lived secret ──> prohibited architecture
 ```
 
-Практическое правило: простота webhook не оправдывает избыточные права или отсутствие ротации. Официальные варианты локальных интеграций: [документация Bitrix24](https://apidocs.bitrix24.ru/local-integrations/index.html).
+Практическое правило: простота webhook не оправдывает избыточные права или отсутствие ротации. Официальные варианты локальных интеграций: [документация Bitrix24](https://apidocs.bitrix24.ru/local-integrations/).
 
 ## 15. Официальные источники
 
@@ -371,7 +371,7 @@ Browser-only with long-lived secret ──> prohibited architecture
 |---|---|---|
 | [Bitrix24 REST API](https://apidocs.bitrix24.ru/) | Webhooks, авторизация, события, ограничения и интеграционные сценарии | 2026-08-05 |
 | [Справочник REST API](https://apidocs.bitrix24.ru/api-reference/) | Методы, события, параметры, scope и ошибки | 2026-08-05 |
-| [Инструменты для локальных интеграций](https://apidocs.bitrix24.ru/local-integrations/index.html) | Официальные варианты локальной интеграции | 2026-08-05 |
+| [Инструменты для локальных интеграций](https://apidocs.bitrix24.ru/local-integrations/) | Официальные варианты локальной интеграции | 2026-08-06 |
 | [Исходники REST-документации](https://github.com/bitrix24/b24restdocs) | История и структура официальной документации; содержимое не копировалось | 2026-08-05 |
 | [Bitrix24 Developer Hub](https://github.com/bitrix24/bitrix24-dev-hub) | Официальные инструменты и примеры | 2026-08-05 |
 | [Bitrix24 PHP SDK](https://github.com/bitrix24/b24phpsdk) | Официальный SDK; контракт API имеет приоритет | 2026-08-05 |

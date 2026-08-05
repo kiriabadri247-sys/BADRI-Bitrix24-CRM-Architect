@@ -589,7 +589,7 @@ ADR получает owner, status `proposed/accepted/superseded`, date, context
 - [Официальная пользовательская документация Bitrix24](https://helpdesk.bitrix24.ru/) — CRM, задачи, права, automation and Cloud.
 - [Официальная документация REST API](https://apidocs.bitrix24.ru/) — интеграции, авторизация и ограничения.
 - [REST API reference](https://apidocs.bitrix24.ru/api-reference/) — методы, параметры and scopes.
-- [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/index.html) — официальный инструментарий.
+- [Локальные интеграции](https://apidocs.bitrix24.ru/local-integrations/) — официальный инструментарий.
 - [Смарт-процессы](https://helpdesk.bitrix24.ru/open/18913884/) — создание and configuration Smart Processes.
 - [Роботы и триггеры](https://helpdesk.bitrix24.ru/open/24633726/) — штатная automation.
 - [Бизнес-процессы](https://helpdesk.bitrix24.ru/open/23951294/) — выбор типа процесса.
@@ -610,4 +610,3 @@ ADR получает owner, status `proposed/accepted/superseded`, date, context
 8. Serviceability, activation, tariff change, equipment issue/return and termination gates.
 9. BI grain, metric owners, control totals, churn methodology and DQ thresholds.
 10. Test portal/pipeline, release window, downtime, rollback and support RACI.
-
