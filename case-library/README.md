@@ -238,16 +238,16 @@ Discovery -> Architecture -> Implementation -> Testing
 
 | Документ | Ссылка | Статус и назначение |
 |---|---|---|
-| PATTERNS.md | [Архитектурные паттерны](../knowledge/architecture-patterns/README.md) | Существующий эквивалент: выбор CRM objects, automation and integration patterns |
-| DISCOVERY_TEMPLATE.md | [Планируемый шаблон Discovery](../templates/DISCOVERY_TEMPLATE.md) | Файл пока отсутствует; целевой шаблон обследования |
-| ARCHITECTURE_TEMPLATE.md | [Планируемый шаблон архитектуры](../templates/ARCHITECTURE_TEMPLATE.md) | Файл пока отсутствует; целевой шаблон TO BE and ADR |
+| PATTERNS.md | [Архитектурные паттерны](PATTERNS.md) | Каталог повторяемых CRM, Smart Process, automation, integration, data, security and delivery patterns |
+| DISCOVERY_TEMPLATE.md | [Шаблон Discovery-аудита](DISCOVERY_TEMPLATE.md) | Универсальный шаблон обследования AS IS, требований, данных, прав, интеграций и рисков |
+| ARCHITECTURE_TEMPLATE.md | [Шаблон архитектурного проектирования](ARCHITECTURE_TEMPLATE.md) | Универсальный шаблон TO BE, CRM architecture, ADR, testing, deployment and monitoring |
 | Ecosystem Architecture | [Целевая экосистема](../docs/ECOSYSTEM_ARCHITECTURE.md) | Уровни и roadmap развития репозитория |
 | Official Sources | [Реестр источников](../knowledge/SOURCES.md) | Единственный разрешённый реестр внешних официальных источников |
 | Testing | [База знаний по тестированию](../knowledge/testing/README.md) | QA strategy, checks and acceptance |
 | Deployment | [База знаний по deployment](../knowledge/deployment/README.md) | Release, rollback and stabilization |
 | Monitoring | [База знаний по monitoring](../knowledge/monitoring/README.md) | Operational signals and response |
 
-Две ссылки на шаблоны намеренно помечены как planned: текущая задача не разрешает создавать дополнительные файлы. До их появления используются требования из AGENTS.md, Ecosystem Architecture and профильных knowledge-разделов.
+Паттерны выбираются после Discovery, а утверждённые требования переносятся в архитектурный шаблон с трассировкой до ADR, реализации, тестов и эксплуатационного контроля.
 
 ## 10. Статистика библиотеки
 
@@ -255,11 +255,11 @@ Discovery -> Architecture -> Implementation -> Testing
 |---|---:|---|
 | Количество кейсов | 25 | Каталоги 01–25 с README.md |
 | Количество отраслей и solution domains | 25 | Один основной домен на каталог |
-| Количество архитектурных решений | 117 | ADR-записи во всех существующих кейсах |
+| Количество архитектурных решений | 191 | ADR-записи во всех существующих кейсах |
 | Нумерованных архитектурных разделов | 542 | Разделы формата ## N. во всех кейсах |
 | Таблиц | 580 | Markdown table separator blocks |
 | Markdown-схем | 272 | Fenced text diagrams |
-| Дата обновления | 2026-08-05 | Дата актуализации каталога |
+| Дата обновления | 2026-08-06 | Актуализировано после создания Discovery и Architecture templates |
 
 Статистика отражает текущее состояние файлов и пересчитывается при добавлении или структурном изменении кейсов. Число ADR зависит от единообразия их табличной маркировки.
 
