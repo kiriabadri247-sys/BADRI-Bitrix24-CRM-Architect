@@ -1,0 +1,51 @@
+# Environment files and secrets
+.env
+.env.*
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+~$*
+.tmp/
+tmp/
+temp/
+
+# Logs
+*.log
+logs/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Exports that may contain personal data
+exports/**
+
+# Backups and archives
+archive/**
+backups/
+backup/
+*.bak
+*.backup
+*.old
+*.orig
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+
+# Local client files
+clients/**
