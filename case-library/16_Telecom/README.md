@@ -610,3 +610,10 @@ ADR получает owner, status `proposed/accepted/superseded`, date, context
 8. Serviceability, activation, tariff change, equipment issue/return and termination gates.
 9. BI grain, metric owners, control totals, churn methodology and DQ thresholds.
 10. Test portal/pipeline, release window, downtime, rollback and support RACI.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

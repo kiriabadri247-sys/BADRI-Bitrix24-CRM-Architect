@@ -649,3 +649,10 @@ Cloud: конфигурационный откат проектируется ч
 | [Документация коробочного Bitrix24](https://dev.1c-bitrix.ru/docs/portal.php) | Проверка On-Premise возможностей и ограничений |
 
 Если функция, поле, связь, событие, REST-метод, приложение или ограничение не подтверждены официальным источником и целевым порталом, они помечаются **«требует проверки»** и не включаются в обязательства перед заказчиком.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

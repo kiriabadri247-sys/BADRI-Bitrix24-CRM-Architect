@@ -632,3 +632,10 @@ ADR получает статус `proposed/accepted/superseded`, owner, date, c
 8. СЭД/ЭДО/1С API, owners, stable IDs, SLA, объёмы и rollback/replay capabilities.
 9. Методика загрузки, прибыльности и KPI, owners метрик и quality thresholds.
 10. Test portal/pipeline, release window, допустимый простой, rollback и support RACI.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

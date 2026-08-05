@@ -626,3 +626,10 @@ ADR получает owner, status `proposed/accepted/superseded`, date, context
 8. Central/local marketing ownership, material approval, audiences and attribution.
 9. BI grain, aggregate detail, metric versions, owners, control totals and DQ thresholds.
 10. Test portal/pilot location, rollout waves, downtime, rollback and support RACI.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

@@ -584,3 +584,10 @@ Monitoring связывается с Incident→Troubleshooting→RCA. Поро�
 | [Документация коробочного Bitrix24](https://dev.1c-bitrix.ru/docs/portal.php) | On-Premise applicability |
 
 Если источник не подтверждает функцию, метод, событие, импорт, лимит или приложение, положение считается **требующим проверки** и не включается в обязательства перед заказчиком.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

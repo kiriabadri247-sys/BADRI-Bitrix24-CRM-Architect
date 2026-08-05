@@ -614,3 +614,10 @@ ADR получает owner, status `proposed/accepted/superseded`, date, context
 8. SLA calendars, priority/impact, degraded mode, alternate channels and peak-load targets.
 9. BI grain, metric owners, source timestamps, control totals and DQ thresholds.
 10. Test portal/gateway, release window, downtime, rollback and support/OT RACI.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

@@ -633,3 +633,10 @@ Each ADR has owner, status proposed/accepted/superseded, date, context, alternat
 10. Test portal, release window, downtime, rollback, degraded mode, DR and support RACI.
 
 Документ не подтверждает юридическую допустимость конкретного договора, методики, внешнего доступа или обработки клиентских материалов. Такие решения требуют отдельной правовой, договорной и информационно-безопасностной проверки.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

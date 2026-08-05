@@ -585,3 +585,10 @@ Alert содержит system, object reference, correlation ID, time, severity,
 10. Test portal, release window, downtime, rollback, degraded mode, DR and support RACI.
 
 Документ не подтверждает соответствие конкретному нормативному акту, классу защищённости, требованиям аттестации или закупки. Такие выводы требуют отдельной юридической и информационно-безопасностной экспертизы на актуальных первичных источниках.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

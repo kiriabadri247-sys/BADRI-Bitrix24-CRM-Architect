@@ -554,3 +554,10 @@ Audit -> Architecture -> Pilot CRM -> Delivery/Service setup
 | [Документация коробочного Bitrix24](https://dev.1c-bitrix.ru/docs/portal.php) | On-Premise applicability |
 
 Если функция, приложение, SLA-механизм, событие, метод или ограничение не подтверждены официальным источником, положение отмечается **«требует проверки»** и не включается в обязательства перед заказчиком.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

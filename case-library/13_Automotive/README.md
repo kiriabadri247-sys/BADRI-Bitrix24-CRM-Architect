@@ -669,3 +669,10 @@ Inventory -> Backup/Export -> Test Configuration -> Synthetic Tests -> UAT
 8. Сервисные SLA, календари, расписание ресурсов и источник availability.
 9. Модель BI, grain, владельцев метрик, контрольные итоги и допустимую задержку.
 10. Test portal/pipeline, release window, допустимый простой, rollback и support RACI.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

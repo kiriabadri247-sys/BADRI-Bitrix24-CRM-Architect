@@ -655,3 +655,10 @@ Each ADR has owner, status proposed/accepted/superseded, date, context, alternat
 10. Test tenants, release window, downtime, rollback, degraded mode, DR and support RACI.
 
 Документ не подтверждает юридическую модель конкретной подписки, revenue recognition, SLA, product access or marketing eligibility. Эти решения требуют отдельной договорной, финансовой, правовой and information-security review.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

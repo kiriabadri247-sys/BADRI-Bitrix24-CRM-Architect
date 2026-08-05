@@ -620,3 +620,10 @@ ADR получает owner, status `proposed/accepted/superseded`, date, context
 8. Partner access, contracts, commissions, service confirmation and fallback procedures.
 9. BI grain, currency/FX, metric owners, control totals and DQ thresholds.
 10. Test portal/pipeline, release window, downtime, rollback and support RACI.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)

@@ -596,3 +596,10 @@ ADR получает owner, status `proposed/accepted/superseded`, date, context
 8. Supplier governance, contract versions, quality metrics and corrective-action process.
 9. BI grain, plan/forecast/actual scenarios, owners, control totals and DQ thresholds.
 10. Test portal/pilot product-season flow, release window, rollback and support RACI.
+
+# Related Documents
+
+- [Case Library](../README.md)
+- [Architecture Patterns](../PATTERNS.md)
+- [Discovery Template](../DISCOVERY_TEMPLATE.md)
+- [Architecture Template](../ARCHITECTURE_TEMPLATE.md)
