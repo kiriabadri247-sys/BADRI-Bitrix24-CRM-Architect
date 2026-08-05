@@ -348,7 +348,58 @@ CRM + TMS/FMS + GPS + ERP/WMS
 
 BI Constructor, datasets и поля зависят от портала. Metric dictionary содержит formula, grain, cohort, filters, timezone, currency, distance/weight units, owner, freshness и reconciliation source.
 
-## 15. Testing
+## 15. Security Architecture
+
+### 1. Role Based Access Control
+
+Роли sales manager, dispatcher, logistician, driver/field participant, accounting, operations head и administrator разделяются по обязанности. Водителю или исполнителю передаётся только минимальная информация о назначенном рейсе; коммерческие условия, клиентский портфель, экспорт и настройки недоступны без отдельного основания.
+
+| Роль | Scope | Минимальный доступ |
+|---|---|---|
+| Sales | Клиенты, заявки, сделки | Коммерческий процесс без transport administration |
+| Dispatcher | Рейсы, маршруты, ресурсы | Operational scope без полной финансовой информации |
+| Driver / field role | Назначенный рейс | Минимальные маршрутные и контактные данные |
+| Accounting | Документы и оплаты | Без управления транспортным lifecycle |
+| Operations head | Подразделение и SLA | Контроль без технических настроек |
+
+### 2. Department Isolation
+
+Sales, dispatch, logistics, fleet, accounting и claims разделяются оргструктурой и ролями. Филиалы и диспетчерские контуры изолируются, а междепартаментная передача заявки или рейса выполняется через ownership и связанные элементы. Исключения документируются и пересматриваются.
+
+### 3. CRM Permissions
+
+| Объект | Правило доступа |
+|---|---|
+| Лиды | Sales intake, если лиды применяются |
+| Контакты | По клиенту и назначенной перевозке |
+| Компании | Клиентский account; перевозчики/поставщики — отдельный scope |
+| Сделки | Коммерческая команда и согласованные руководители |
+| Smart Processes | По роли в заявке, маршруте, рейсе, транспорте, водителе или претензии |
+
+Изменение статуса рейса, назначения ресурса, финансовых полей, export и REST проверяется раздельно. Внешняя TMS/GPS остаётся authoritative согласно ADR.
+
+### 4. Document Security
+
+Договоры, заявки, путевые документы, накладные, акты и претензии доступны только участникам процесса. Чувствительные файлы и оригиналы хранятся в разрешённом DMS/учётном контуре; CRM использует минимальные атрибуты или защищённые ссылки. Просмотр и изменение разделяются.
+
+### 5. Audit
+
+Контролируются изменения маршрута, ресурса, водителя, срока, статуса доставки, суммы, претензии и ответственного. Доступная CRM history сопоставляется с masked TMS/GPS/integration logs по correlation ID. Operations owner отвечает за review, reconciliation и расследование отклонений.
+
+### 6. Cloud Limitations
+
+- права и функции контроля зависят от тарифа и настроек портала;
+- доступность истории, Smart Process permissions и export controls проверяется на конкретном Cloud;
+- отсутствует доступ к ядру, серверному PHP и DB;
+- GPS/TMS/security monitoring остаётся внешней ответственностью по интеграционному контракту.
+
+### 7. On-Premise Considerations
+
+Администратор отвечает за OS, web server, PHP, DB, modules, files, cron/agents, network, logs, backup и updates. Восстановление проверяется, технические учётные записи ограничены, доступ к инфраструктуре отделён от CRM-ролей. Ядро продукта не модифицируется.
+
+---
+
+## 16. Testing
 
 | № | Сценарий | Проверка | Ожидаемый результат |
 |---:|---|---|---|
@@ -375,7 +426,7 @@ BI Constructor, datasets и поля зависят от портала. Metric 
 
 Тестовые данные синтетические. UAT подписывают Sales, Logistics, Dispatch, Fleet, Drivers representative, Finance, Service и Integration owners. Обязательны positive, negative, repeat, concurrency, rights и recovery cases.
 
-## 16. Deployment
+## 17. Deployment
 
 | Этап | Действия | Gate |
 |---|---|---|
@@ -397,7 +448,7 @@ Discovery -> Test configuration -> Contract tests -> Sample migration
 
 Cloud и On-Premise планируются отдельно. Для коробочной версии дополнительно проверяются версия продукта/модулей, PHP, БД, файлы, cron, backup/restore, инфраструктура и безопасность. Ядро продукта не изменяется.
 
-## 17. Monitoring
+## 18. Monitoring
 
 | Контроль | Сигнал | Owner | Реакция |
 |---|---|---|---|
@@ -413,7 +464,7 @@ Cloud и On-Premise планируются отдельно. Для коробо
 
 SLI: success/error rate, latency, backlog age, retry count, last successful sync, stale age и reconciliation delta. Логи не содержат секреты, реальные координаты, адреса или лишние персональные данные.
 
-## 18. Risks
+## 19. Risks
 
 | № | Риск | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -473,7 +524,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 | 54 | Нет обучения смен | Обучили офис | Обход процесса | Role/shift training |
 | 55 | Нет hypercare | Система передана сразу | Инциденты накапливаются | Support window |
 
-## 19. ADR
+## 20. ADR
 
 ### ADR-LOG-001: Модель перевозки
 
@@ -539,7 +590,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 - **Последствия:** выбор фиксируется до настройки каналов и аналитики.
 - **Статус:** Open до Discovery.
 
-## 20. Типовые ошибки внедрения
+## 21. Типовые ошибки внедрения
 
 | № | Ошибка | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -624,7 +675,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 | 79 | Обучили только офисную смену | Неполный rollout | Ночная смена обходит процесс | Shift training |
 | 80 | Нет hypercare | Проект закрыт сразу | Инциденты без owner | Support window |
 
-## 21. Implementation Roadmap
+## 22. Implementation Roadmap
 
 | Этап | Результат | Минимальные артефакты | Критерий готовности |
 |---:|---|---|---|

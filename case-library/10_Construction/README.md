@@ -361,7 +361,58 @@ CRM + PM + ERP/1C + BIM/CDE + ECM
 
 BI Constructor, datasets and fields depend on target portal. Metric dictionary фиксирует formula, grain, baseline/version, cohort, filters, timezone, currency, units, owner, freshness and reconciliation source.
 
-## 15. Testing
+## 15. Security Architecture
+
+### 1. Role Based Access Control
+
+Роли sales, project manager, estimator, engineer, contractor coordinator, finance, site/department head и administrator получают доступ по проекту и функции. Сметы, договоры, тендеры, финансовые показатели и техническая конфигурация разделяются; внешнему подрядчику не предоставляется общий CRM-доступ без отдельного подтверждённого механизма.
+
+| Роль | Scope | Ограничение |
+|---|---|---|
+| Sales | Клиенты и сделки | Без изменения project/estimate facts |
+| Project manager | Назначенные проекты, задачи, документы | Без глобального CRM administration |
+| Estimator / engineer | Сметы и технические данные | Только назначенные объекты и версии |
+| Finance | Бюджет, договоры, оплаты | Без управления execution lifecycle |
+| Director / head | Разрешённый portfolio и analytics | Без автоматического admin access |
+
+### 2. Department Isolation
+
+Sales, project office, engineering, procurement, site teams и finance разделяются подразделениями, проектными командами и ролями. Межпроектный и межфилиальный доступ разрешается по назначению и сроку. Общие контрагенты не дублируются ради изоляции проектов.
+
+### 3. CRM Permissions
+
+| Объект | Правило доступа |
+|---|---|
+| Лиды | Sales qualification, если используется lead model |
+| Контакты | По клиенту, подрядчику и проектной роли |
+| Компании | Account ownership; клиенты и подрядчики различаются атрибутом/ролью |
+| Сделки | Sales team и утверждённые руководители |
+| Smart Processes | По роли в объекте, проекте, тендере, смете или подрядчике |
+
+Проверяются CRUD, export, REST, массовые операции и доступ через связанные объекты. Финансовые/ERP facts не редактируются свободно в CRM-проекции.
+
+### 4. Document Security
+
+Договоры, сметы, чертежи, акты, тендерные материалы и исполнительная документация имеют классификацию, владельца и версию. Конфиденциальные файлы хранятся в защищённом DMS/project repository; CRM содержит необходимые метаданные или ссылку. Права просмотра, изменения, скачивания и согласования разделены.
+
+### 5. Audit
+
+Аудиту подлежат изменения бюджета, сметы, срока, подрядчика, project status, договора и ответственного. CRM history и masked ERP/DMS/integration logs связываются по ID/correlation ID. PMO, Finance и Security owners отвечают за периодический review и RCA существенных отклонений.
+
+### 6. Cloud Limitations
+
+- права, журналы и доступность проектных/Smart Process controls зависят от тарифа и конфигурации;
+- возможности проверяются на целевом Cloud-портале и в официальной документации;
+- отсутствует доступ к server, PHP, core и DB;
+- DMS/ERP/project repository controls проектируются как внешние границы.
+
+### 7. On-Premise Considerations
+
+Администратор защищает OS, web server, PHP, DB, modules, files, cron/agents, network, logs, backups и updates. Контролируются файловые права и capacity, backup/restore тестируются, infrastructure access отделён от business roles, ядро Bitrix24 не изменяется.
+
+---
+
+## 16. Testing
 
 | № | Сценарий | Проверка | Ожидаемый результат |
 |---:|---|---|---|
@@ -388,7 +439,7 @@ BI Constructor, datasets and fields depend on target portal. Metric dictionary �
 
 Все данные синтетические. UAT подписывают Sales, Tender, Project, Engineering, Estimate, Contractor management, Legal, Finance, Security and Integration owners. Positive, negative, repeat, concurrency, rights and recovery cases обязательны.
 
-## 16. Deployment
+## 17. Deployment
 
 | Этап | Действия | Gate |
 |---|---|---|
@@ -410,7 +461,7 @@ Discovery -> Architecture -> Test configuration -> Contract tests
 
 Cloud and On-Premise planned separately. For On-Premise additionally verify product/modules, PHP, database, files, cron, backup/restore, infrastructure and security. Core product files are not modified.
 
-## 17. Monitoring
+## 18. Monitoring
 
 | Контроль | Сигнал | Owner | Реакция |
 |---|---|---|---|
@@ -426,7 +477,7 @@ Cloud and On-Premise planned separately. For On-Premise additionally verify prod
 
 SLI: success/error rate, latency, backlog age, retry count, last successful sync, stale age and reconciliation delta. Logs contain no secrets, drawings, estimates, documents or personal data.
 
-## 18. Risks
+## 19. Risks
 
 | № | Риск | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -486,7 +537,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 | 54 | No concurrency test | Sequential QA only | Duplicate project/approval | Parallel scenarios |
 | 55 | No hypercare | Immediate handoff | Incidents accumulate | Support window |
 
-## 19. ADR
+## 20. ADR
 
 ### ADR-CON-001: Модель строительного объекта
 
@@ -552,7 +603,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 - **Последствия:** versioned summaries and no manual actual-cost editing.
 - **Статус:** Proposed.
 
-## 20. Типовые ошибки внедрения
+## 21. Типовые ошибки внедрения
 
 | № | Ошибка | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -637,7 +688,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 | 79 | No integration/support owner | Project handoff gap | Incidents unhandled | Support RACI |
 | 80 | No hypercare | Immediate closure | Issues accumulate | Support window |
 
-## 21. Implementation Roadmap
+## 22. Implementation Roadmap
 
 | Этап | Результат | Минимальные артефакты | Критерий готовности |
 |---:|---|---|---|

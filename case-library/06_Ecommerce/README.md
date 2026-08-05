@@ -347,7 +347,58 @@ CMS + CRM + ERP/WMS + Payment + Delivery
 
 BI Constructor, datasets и доступные поля зависят от портала. Каждая метрика имеет formula, grain, cohort, filters, timezone, currency, attribution, owner, freshness и reconciliation source.
 
-## 16. Testing
+## 16. Security Architecture
+
+### 1. Role Based Access Control
+
+Роли operator, sales manager, support, marketing, warehouse, finance, e-commerce head и administrator получают доступ по каналу и операции. Платёжные, возвратные, экспортные и административные полномочия отделяются от обработки заказа; least privilege применяется к пользователям и интеграциям.
+
+| Роль | Рабочие объекты | Минимальный доступ |
+|---|---|---|
+| Operator / sales | Клиенты и заказы | Обработка разрешённой очереди без payment settings |
+| Support | Обращения, возвраты, претензии | Только связанный клиентский контекст |
+| Marketing | Сегменты и кампании | Минимизированные данные без финансовых реквизитов |
+| Warehouse | Исполнение и отгрузка | Заказ и доставка без лишних CRM-данных |
+| Finance | Оплата и возврат | Подтверждение authoritative status без CRM administration |
+
+### 2. Department Isolation
+
+Sales, support, marketing, warehouse и finance разделяются по ролям и operational scope. Каналы, магазины или регионы изолируются без создания дублей Customer 360. Междепартаментная передача заказа, возврата или претензии открывает только необходимые связанные элементы.
+
+### 3. CRM Permissions
+
+| Объект | Правило доступа |
+|---|---|
+| Лиды | Intake/marketing qualification, если lead model принят |
+| Контакты | По клиентскому и support scope |
+| Компании | Только B2B account roles, если применимо |
+| Сделки | По заказу/воронке, ответственному и каналу |
+| Smart Processes | По роли в заказе, возврате, обращении или претензии |
+
+Особо тестируются экспорт, массовая коммуникация, изменение статусов оплаты/возврата и API-доступ. CRM не становится master платёжных credentials.
+
+### 4. Document Security
+
+Заказы, чеки/подтверждения, возвратные документы, обращения и вложения доступны по need-to-know. Платёжные credentials и полные чувствительные payload не сохраняются в CRM или документации. Файлы размещаются в утверждённом хранилище с контролем просмотра, изменения, скачивания и retention.
+
+### 5. Audit
+
+Отслеживаются изменения заказа, суммы, скидки, оплаты, доставки, возврата, ответственного и consent/communication status в пределах подтверждённых функций. CRM history и masked logs сайта, OMS, payment и delivery systems связываются correlation ID. Назначенные owners проводят reconciliation и RCA.
+
+### 6. Cloud Limitations
+
+- права, доступные журналы и ограничения массовых операций зависят от тарифа и конфигурации;
+- возможности CRM, Smart Processes, marketing и integrations проверяются на конкретном Cloud-портале;
+- доступа к server, PHP, core и DB нет;
+- внешние payment/OMS/security controls не объявляются возможностями Bitrix24.
+
+### 7. On-Premise Considerations
+
+Администратор дополнительно отвечает за OS, web server, PHP, DB, modules, files, cron/agents, network, TLS, logs, updates и backup. Восстановление и обновления тестируются, service accounts и административные роли ограничиваются, ядро не изменяется.
+
+---
+
+## 17. Testing
 
 | № | Сценарий | Проверка | Ожидаемый результат |
 |---:|---|---|---|
@@ -376,7 +427,7 @@ BI Constructor, datasets и доступные поля зависят от по
 
 Тестовые данные только синтетические. UAT подписывают E-commerce, Sales, Support, Warehouse, Finance, Marketing и Integration owners. Обязательны positive, negative, repeat, concurrency, role и recovery cases.
 
-## 17. Deployment
+## 18. Deployment
 
 | Этап | Действия | Gate |
 |---|---|---|
@@ -398,7 +449,7 @@ Audit -> Test configuration -> Integration test -> Sample migration
 
 Cloud и On-Premise планируются отдельно. Для коробочной версии дополнительно проверяются версия продукта/модулей, PHP, БД, файлы, cron, backup/restore, инфраструктура и безопасность. Ядро продукта не изменяется.
 
-## 18. Monitoring
+## 19. Monitoring
 
 | Контроль | Сигнал | Owner | Реакция |
 |---|---|---|---|
@@ -414,7 +465,7 @@ Cloud и On-Premise планируются отдельно. Для коробо
 
 SLI: success/error rate, latency, backlog age, retry count, last successful sync, reconciliation delta и data freshness. Логи не содержат секретов, полные контактные/адресные данные или платёжный payload.
 
-## 19. Risks
+## 20. Risks
 
 | № | Риск | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -474,7 +525,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 | 54 | Нет concurrency test | Тест только последовательный | Oversell/duplicate refund | Parallel scenarios |
 | 55 | Нет hypercare | Система передана сразу | Инциденты накапливаются | Support window |
 
-## 20. ADR
+## 21. ADR
 
 ### ADR-ECOM-001: Модель заказа
 
@@ -540,7 +591,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 - **Последствия:** routing и аналитика каналов настраиваются согласно выбору.
 - **Статус:** Open до Discovery.
 
-## 21. Типовые ошибки внедрения
+## 22. Типовые ошибки внедрения
 
 | № | Ошибка | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -625,7 +676,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 | 79 | Backup не проверен восстановлением | Формальная проверка | Rollback не работает | Restore drill |
 | 80 | Запуск без hypercare/support RACI | Проект закрыт сразу | Инциденты без owner | Support window |
 
-## 22. Implementation Roadmap
+## 23. Implementation Roadmap
 
 | Этап | Результат | Минимальные артефакты | Критерий готовности |
 |---:|---|---|---|

@@ -242,7 +242,60 @@ BI <---------- governed datasets/metric contracts
 
 BI и datasets зависят от тарифа и прав; источник — [официальная документация наборов данных](https://helpdesk.bitrix24.ru/open/24355590/). Forecast не считается достоверным без формальной probability/category model.
 
-## 12. Testing Plan
+## 12. Security Architecture
+
+### 1. Role Based Access Control
+
+RBAC строится вокруг ролей sales manager, account manager, sales head, marketing, legal/finance, delivery и administrator. Менеджер работает со своими accounts и opportunities, руководитель — с согласованным подразделением, а служебные и административные права выдаются отдельно.
+
+| Роль | CRM scope | Ограничение |
+|---|---|---|
+| Sales manager | Клиенты и сделки в своём ownership | Без настроек, массового экспорта и чужих коммерческих условий |
+| Account manager | Действующие клиенты и повторные продажи | Только назначенный portfolio |
+| Sales head | Подразделение и прогноз | Без технического администрирования |
+| Legal / finance | Согласования и документы | Только необходимые поля и версии |
+| Administrator | Конфигурация и support | Контролируемая отдельная учётная запись |
+
+Принцип минимальных прав применяется к UI, direct URL, REST, экспорту и массовым операциям.
+
+### 2. Department Isolation
+
+Направления продаж и отделы не изолируются отдельными компаниями-клонами. Разделение обеспечивается оргструктурой, ролями, ownership и обоснованными воронками. Междепартаментная работа разрешается через назначение участника, handover или согласование; постоянные исключения проходят review.
+
+### 3. CRM Permissions
+
+| Объект | Правило доступа |
+|---|---|
+| Лиды | Команда квалификации, если lead model принят ADR |
+| Контакты | Через разрешённый account и relationship role |
+| Компании | По account ownership, сегменту и подразделению |
+| Сделки | По воронке, ответственному и команде сделки |
+| Smart Processes | По роли в договоре, согласовании или delivery lifecycle |
+
+Права на просмотр, изменение, удаление, экспорт и настройки тестируются независимо. Руководитель не получает administrative access только из-за должности.
+
+### 4. Document Security
+
+Коммерческие предложения, договоры, спецификации, расчёты и согласования имеют владельца, актуальную версию и разрешённый круг чтения/изменения. Чувствительные файлы размещаются в утверждённом DMS/хранилище либо передаются защищённой ссылкой; публичные ссылки и вложения без владельца запрещены архитектурной политикой.
+
+### 5. Audit
+
+Отслеживаются изменения суммы, скидки, стадии, вероятности, ответственного, условий договора и результата согласования. Доступная CRM history дополняется журналами интеграций с маскированием данных. Sales Operations или назначенный control owner выполняет периодический review и отвечает за RCA подозрительных или ошибочных изменений.
+
+### 6. Cloud Limitations
+
+- набор функций и детализация CRM-ролей зависят от тарифа и настроек портала;
+- доступность истории, журналов, field-level controls и экспортных ограничений подтверждается на конкретном Cloud-портале;
+- доступа к серверу, ядру, PHP-коду и DB нет;
+- секреты интеграций хранятся вне CRM, документов и Git.
+
+### 7. On-Premise Considerations
+
+Владелец On-Premise дополнительно защищает OS, web server, PHP, DB, modules, files, cron/agents, network и backups. Административный доступ именованный и ограниченный, обновления проходят тестовый контур, восстановление backup проверяется. Расширения выполняются без изменения ядра.
+
+---
+
+## 13. Testing Plan
 
 | № | Сценарий | Проверка | Ожидаемый результат |
 |---:|---|---|---|
@@ -263,7 +316,7 @@ BI и datasets зависят от тарифа и прав; источник �
 
 Тестовые данные синтетические; UAT выполняют Sales, Management, Marketing и Support owners.
 
-## 13. Deployment Plan
+## 14. Deployment Plan
 
 ```text
 Audit -> Architecture -> Pilot configuration -> Data rehearsal
@@ -281,7 +334,7 @@ Audit -> Architecture -> Pilot configuration -> Data rehearsal
 
 Работающая воронка изменяется через параллельную настройку или пилот, если это возможно. On-Premise дополнительно требует server/PHP/DB/modules compatibility и restore test.
 
-## 14. Monitoring
+## 15. Monitoring
 
 | Контроль | Сигнал | Действие |
 |---|---|---|
@@ -295,7 +348,7 @@ Audit -> Architecture -> Pilot configuration -> Data rehearsal
 
 Пороги устанавливаются по baseline и бизнес-риску; универсальные SLA не задаются.
 
-## 15. Risks
+## 16. Risks
 
 | № | Риск | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -335,7 +388,7 @@ Audit -> Architecture -> Pilot configuration -> Data rehearsal
 | 34 | Cloud function unavailable | Tariff not verified | Scope failure | Early portal check |
 | 35 | Box core modified | Shortcut | Broken updates | Supported extension |
 
-## 16. ADR
+## 17. ADR
 
 ### ADR-B2B-001: Использовать лиды или Deal-First
 
@@ -397,7 +450,7 @@ Audit -> Architecture -> Pilot configuration -> Data rehearsal
 | Consequences | More structure and permissions; feature verification required |
 | Review trigger | Contract volume/renewals increase |
 
-## 17. Типовые ошибки B2B внедрения
+## 18. Типовые ошибки B2B внедрения
 
 | № | Ошибка | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -457,7 +510,7 @@ Audit -> Architecture -> Pilot configuration -> Data rehearsal
 | 54 | No support handover | Developer dependency | Slow recovery | Runbook/RACI |
 | 55 | Cloud and Box treated identically | Generic design | Impossible solution | Explicit applicability |
 
-## 18. Implementation Roadmap
+## 19. Implementation Roadmap
 
 | Этап | Результат | Минимальный scope | Критерий готовности |
 |---|---|---|---|

@@ -332,7 +332,58 @@ CRM + PMS + Channel Manager + POS/ERP + Payments
 
 BI Constructor, datasets and fields depend on target portal. Metric dictionary includes formula, grain, cohort, property, timezone, currency, eligible statuses, attribution, owner, freshness and reconciliation source.
 
-## 15. Testing
+## 15. Security Architecture
+
+### 1. Role Based Access Control
+
+Роли reservation agent, front office, guest service, sales/marketing, finance, property manager и administrator получают минимальный доступ по объекту размещения и операции. Данные гостя, оплата, лояльность, экспорт и настройки разделяются; shared accounts не используются как архитектурная норма.
+
+| Роль | Рабочий scope | Ограничение |
+|---|---|---|
+| Reservation agent | Запросы и бронирования | Только назначенный property/channel scope |
+| Front office | Заезд, проживание, сервис | Минимальный guest context без admin settings |
+| Guest service | Обращения и задачи | Только связанная бронь/гость |
+| Marketing | Сегменты и коммуникации | Минимизированные данные и подтверждённые разрешения |
+| Finance | Оплаты и документы | Без управления guest lifecycle |
+
+### 2. Department Isolation
+
+Properties, front office, reservations, service, marketing и finance разделяются организационной структурой и ролями. Межобъектный доступ предоставляется централизованным функциям по утверждённому scope. Передача гостя или брони не создаёт дубликаты Customer 360.
+
+### 3. CRM Permissions
+
+| Объект | Правило доступа |
+|---|---|
+| Лиды | Sales/reservation intake, если лиды используются |
+| Контакты | По guest relationship и property scope |
+| Компании | Корпоративные клиенты и партнёры по account ownership |
+| Сделки | По booking/sales pipeline, ответственному и property |
+| Smart Processes | По роли в бронировании, номере, сервисе или loyalty lifecycle |
+
+Просмотр, изменение, удаление, export, mass communication и API проверяются отдельно. PMS остаётся authoritative для согласованных reservation/room facts.
+
+### 4. Document Security
+
+Бронирования, счета, подтверждения, договоры, обращения и guest attachments доступны по need-to-know. Платёжные credentials и лишние идентифицирующие данные не помещаются в CRM. Документы хранятся в утверждённом защищённом контуре с отдельными правами просмотра, изменения и retention.
+
+### 5. Audit
+
+Контролируются изменения гостя, брони, property/room, дат, суммы, статуса оплаты, скидки, ответственного и коммуникационного статуса. CRM history сопоставляется с masked PMS/payment/integration logs по correlation ID. Property и security owners проводят review и RCA конфликтов или несанкционированных изменений.
+
+### 6. Cloud Limitations
+
+- безопасность, права, history и ограничения коммуникаций зависят от тарифа, региона и конфигурации портала;
+- конкретные возможности проверяются на целевом Cloud-портале;
+- нет доступа к server, PHP, core и DB;
+- PMS, payment и внешние security controls не считаются функциями Bitrix24 без подтверждённой интеграции.
+
+### 7. On-Premise Considerations
+
+Администратор дополнительно отвечает за OS, web server, PHP, DB, modules, files, cron/agents, network, TLS, logs, backup и updates. Доступ к инфраструктуре и приложению разделяется, восстановление проверяется, сервисные учётные записи ограничены, ядро не изменяется.
+
+---
+
+## 16. Testing
 
 | № | Сценарий | Проверка | Ожидаемый результат |
 |---:|---|---|---|
@@ -360,7 +411,7 @@ BI Constructor, datasets and fields depend on target portal. Metric dictionary i
 
 Тестовые данные только синтетические. UAT подписывают Reservations, Front Desk, Housekeeping/Service, Property Management, Finance, Marketing/Loyalty, Security and Integration owners. Negative, repeat, concurrency, role and recovery cases обязательны.
 
-## 16. Deployment
+## 17. Deployment
 
 | Этап | Действия | Gate |
 |---|---|---|
@@ -382,7 +433,7 @@ Discovery -> Architecture -> Test configuration -> PMS contract tests
 
 Cloud and On-Premise planned separately. For On-Premise additionally verify product/modules, PHP, database, files, cron, backup/restore, infrastructure and security. Core product files are not modified.
 
-## 17. Monitoring
+## 18. Monitoring
 
 | Контроль | Сигнал | Owner | Реакция |
 |---|---|---|---|
@@ -398,7 +449,7 @@ Cloud and On-Premise planned separately. For On-Premise additionally verify prod
 
 SLI: success/error rate, latency, backlog age, retry count, last successful sync, stale age and reconciliation delta. Logs contain no secrets, identity documents, room/stay details beyond necessary IDs, payment payloads or full contact data.
 
-## 18. Risks
+## 19. Risks
 
 | № | Риск | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -458,7 +509,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 | 54 | Shift staff not trained | Office-only rollout | Process bypass | Role/shift training |
 | 55 | No hypercare | Immediate handoff | Incidents accumulate | Support window |
 
-## 19. ADR
+## 20. ADR
 
 ### ADR-HSP-001: Модель гостя
 
@@ -524,7 +575,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 - **Последствия:** choice fixed before channels and analytics setup.
 - **Статус:** Open until Discovery.
 
-## 20. Типовые ошибки внедрения
+## 21. Типовые ошибки внедрения
 
 | № | Ошибка | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -609,7 +660,7 @@ SLI: success/error rate, latency, backlog age, retry count, last successful sync
 | 79 | No integration/support owner | Handoff gap | Incidents unhandled | Support RACI |
 | 80 | No hypercare | Immediate closure | Issues accumulate | Support window |
 
-## 21. Implementation Roadmap
+## 22. Implementation Roadmap
 
 | Этап | Результат | Минимальные артефакты | Критерий готовности |
 |---:|---|---|---|

@@ -260,7 +260,58 @@ BI <----- governed metrics ------ CRM/Delivery/Support
 
 BI Конструктор и datasets зависят от тарифа/прав; источник — [официальная документация](https://helpdesk.bitrix24.ru/open/24355590/). Прибыльность не рассчитывается достоверно без подтверждённых costs and revenue.
 
-## 13. Testing
+## 13. Security Architecture
+
+### 1. Role Based Access Control
+
+Роли sales manager, service coordinator, specialist, project manager, accounting, service head и administrator получают доступ по рабочей функции. Исполнитель видит только назначенные задачи и необходимый клиентский контекст, а финансовые, экспортные и конфигурационные действия отделены.
+
+| Роль | Рабочие объекты | Минимальный доступ |
+|---|---|---|
+| Sales manager | Клиенты и сделки | Свой/разрешённый sales scope |
+| Coordinator | Заявки, проекты и SLA | Назначение и контроль без admin settings |
+| Specialist | Работы и задачи | Только назначенная работа и необходимые файлы |
+| Accounting | Счета, акты, статусы оплаты | Без управления сервисным lifecycle |
+| Administrator | Конфигурация | Отдельная контролируемая роль |
+
+### 2. Department Isolation
+
+Продажи, delivery, support и accounting разделяются ролями и подразделениями. Handover из сделки в проект или сервис создаёт контролируемую связь, а не открывает весь клиентский портфель. Междепартаментный доступ ограничен сроком, целью и необходимыми объектами.
+
+### 3. CRM Permissions
+
+| Объект | Правило доступа |
+|---|---|
+| Лиды | Только intake/qualification roles, если лиды используются |
+| Контакты | По клиенту и назначенной работе |
+| Компании | По account ownership и delivery responsibility |
+| Сделки | Sales team и согласованные руководители |
+| Smart Processes | По роли в проекте, заявке, сервисе или SLA lifecycle |
+
+Отдельно проверяются просмотр, изменение, удаление, экспорт, массовые действия и изменение настроек.
+
+### 4. Document Security
+
+КП, договоры, технические задания, акты, отчёты и сервисные вложения классифицируются по типу и проекту. Специалист получает только необходимые версии; конфиденциальные материалы хранятся в защищённом DMS/диске с контролем просмотра и изменения. Неуправляемые публичные ссылки исключаются.
+
+### 5. Audit
+
+Аудиту подлежат изменения SLA, приоритета, срока, ответственного, объёма работ, финансового статуса и закрытия. Используются доступная история Bitrix24 и обезличенные интеграционные логи. Service owner отвечает за регулярный контроль, разбор отклонений и документированный RCA.
+
+### 6. Cloud Limitations
+
+- права и журналы зависят от тарифа, редакции интерфейса и настроек портала;
+- наличие конкретных controls проверяется на целевом Cloud-портале;
+- отсутствует доступ к ядру, серверному PHP и базе данных;
+- внешние service/security logs могут потребоваться для интеграционного контура.
+
+### 7. On-Premise Considerations
+
+Администратор отвечает за безопасность OS, web server, PHP, DB, modules, files, cron/agents, network, logs и backups. Доступ разделяется между infrastructure, application и business administrators. Backup и restore тестируются, обновления проверяются до production, ядро не модифицируется.
+
+---
+
+## 14. Testing
 
 | № | Сценарий | Проверка | Ожидаемый результат |
 |---:|---|---|---|
@@ -281,7 +332,7 @@ BI Конструктор и datasets зависят от тарифа/прав;
 
 Тестовые данные синтетические. UAT подписывают Sales, Delivery, Service и Finance owners.
 
-## 14. Deployment
+## 15. Deployment
 
 ```text
 Audit -> Architecture -> Pilot CRM -> Delivery/Service setup
@@ -300,7 +351,7 @@ Audit -> Architecture -> Pilot CRM -> Delivery/Service setup
 
 Рабочие процессы изменяются через pilot/parallel configuration, если возможно. On-Premise требует совместимости server/PHP/DB/modules и restore test.
 
-## 15. Monitoring
+## 16. Monitoring
 
 | Контроль | Сигнал | Действие |
 |---|---|---|
@@ -315,7 +366,7 @@ Audit -> Architecture -> Pilot CRM -> Delivery/Service setup
 
 Пороги определяются бизнесом и baseline; универсальные SLA и capacity values не задаются.
 
-## 16. Risks
+## 17. Risks
 
 | № | Риск | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -355,7 +406,7 @@ Audit -> Architecture -> Pilot CRM -> Delivery/Service setup
 | 34 | No support owner | Handover missing | Slow incidents | RACI/runbooks |
 | 35 | No monitoring | Project ends at launch | Late failures | Operational SLI/alerts |
 
-## 17. ADR
+## 18. ADR
 
 ### ADR-SVC-001: Модель проекта
 
@@ -417,7 +468,7 @@ Audit -> Architecture -> Pilot CRM -> Delivery/Service setup
 | Consequences | Standard-first, but capability verification mandatory |
 | Review trigger | Volume, omnichannel, CMDB or SLA complexity grows |
 
-## 18. Типовые ошибки
+## 19. Типовые ошибки
 
 | № | Ошибка | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -477,7 +528,7 @@ Audit -> Architecture -> Pilot CRM -> Delivery/Service setup
 | 54 | No monitoring after launch | Project closure | Late incidents | Operational controls |
 | 55 | Cloud and Box treated equally | Generic design | Impossible solution | Explicit applicability |
 
-## 19. Implementation Roadmap
+## 20. Implementation Roadmap
 
 | Этап | Результат | Минимальный scope | Критерий готовности |
 |---|---|---|---|

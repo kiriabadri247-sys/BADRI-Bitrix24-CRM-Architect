@@ -363,7 +363,58 @@ CRM + ERP/MES/WMS/QMS -> Data contracts -> Quality checks
 
 BI Constructor, наборы данных и доступные поля зависят от портала. Metric dictionary фиксирует бизнес-смысл, формулу, grain, период, filters, timezone, currency, owner, freshness и источник сверки.
 
-## 14. Testing
+## 14. Security Architecture
+
+### 1. Role Based Access Control
+
+Роли sales, technologist, production, supply, quality, logistics, finance, director и administrator получают доступ по функции и производственному контексту. Коммерческие условия, технологические сведения, качество и административные настройки разделяются; least privilege проверяется под тестовыми ролями.
+
+| Роль | Рабочий scope | Ограничение |
+|---|---|---|
+| Sales | Клиент и коммерческий заказ | Без изменения производственных/quality facts |
+| Technologist | Изделие и спецификация | Без финансовых и административных прав |
+| Production | Назначенные заказы и партии | Минимальные клиентские данные |
+| Supply | Материалы, поставщики, поставки | Без полного клиентского портфеля |
+| Quality | Проверки, дефекты, рекламации | Защищённое изменение результатов контроля |
+
+### 2. Department Isolation
+
+Sales, engineering, production, supply, quality и logistics разделяются подразделениями и ролями. Междепартаментный процесс использует связанные сущности и handover, а не общий неограниченный доступ. Производственные площадки и направления изолируются без дублирования master data.
+
+### 3. CRM Permissions
+
+| Объект | Правило доступа |
+|---|---|
+| Лиды | Sales/qualification, если lead model используется |
+| Контакты | Sales и разрешённые service roles |
+| Компании | Account owner, supply scope для поставщиков — отдельно |
+| Сделки | Коммерческая команда и утверждённые руководители |
+| Smart Processes | По роли в изделии, заказе, партии, поставщике или рекламации |
+
+Нельзя свободно изменять authoritative ERP/quality facts в CRM-проекции. CRUD, export, REST и массовые действия проверяются отдельно.
+
+### 4. Document Security
+
+Договоры, спецификации, чертежи, технологические карты, акты, накладные и quality evidence классифицируются. Конфиденциальные производственные файлы хранятся в утверждённом DMS/PLM-контуре; Bitrix24 содержит необходимую версию или защищённую ссылку. Права чтения и изменения разделяются.
+
+### 5. Audit
+
+Контролируются изменения количества, срока, спецификации, производственного статуса, результата качества, ответственного и отгрузки. CRM history сопоставляется с masked ERP/integration logs по external ID/correlation ID. Владельцы production и quality отвечают за review, reconciliation и RCA.
+
+### 6. Cloud Limitations
+
+- детализация ролей и доступность history/audit функций зависят от тарифа и настроек портала;
+- конкретные права Smart Processes, документов и экспорта проверяются на целевом Cloud;
+- нет доступа к серверу, PHP, ядру и базе данных;
+- ERP/PLM/security logs остаются во внешнем контролируемом контуре.
+
+### 7. On-Premise Considerations
+
+Администратор защищает OS, web server, PHP, DB, modules, files, cron/agents, integrations, network и backups. Контролируются файловые права, журналы, обновления, capacity и восстановление. Infrastructure и application administrators разделены, ядро Bitrix24 не изменяется.
+
+---
+
+## 15. Testing
 
 | № | Сценарий | Проверка | Ожидаемый результат |
 |---:|---|---|---|
@@ -390,7 +441,7 @@ BI Constructor, наборы данных и доступные поля зав�
 
 Все данные синтетические. UAT подписывают Sales, Engineering, Production, Supply, Quality, Logistics и Finance owners. Обязательны positive, negative, repeat, concurrency, rights и recovery cases.
 
-## 15. Deployment
+## 16. Deployment
 
 | Этап | Действия | Gate |
 |---|---|---|
@@ -412,7 +463,7 @@ Discovery -> Test configuration -> Sample migration -> UAT
 
 Cloud и On-Premise рассматриваются отдельно. В коробочной версии дополнительно проверяются версия продукта и модулей, PHP, БД, файлы, cron, backup/restore, инфраструктура и безопасность. Ядро продукта не изменяется.
 
-## 16. Monitoring
+## 17. Monitoring
 
 | Контроль | Сигнал | Owner | Реакция |
 |---|---|---|---|
@@ -428,7 +479,7 @@ Cloud и On-Premise рассматриваются отдельно. В коро
 
 Технические SLI: success/error rate, latency, backlog age, retry count, last successful sync, reconciliation delta. Логи маскируют персональные данные и не содержат секретов или содержимое инженерных документов.
 
-## 17. Risks
+## 18. Risks
 
 | № | Риск | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -488,7 +539,7 @@ Cloud и On-Premise рассматриваются отдельно. В коро
 | 54 | Hypercare отсутствует | Проект закрыт после запуска | Инциденты накапливаются | Support window |
 | 55 | Нет обучения смен/ролей | Обучили только офис | Обход процесса | Role/shift training |
 
-## 18. ADR
+## 19. ADR
 
 ### ADR-MFG-001: Модель производственного заказа
 
@@ -554,7 +605,7 @@ Cloud и On-Premise рассматриваются отдельно. В коро
 - **Последствия:** выбор фиксируется до настройки каналов и аналитики.
 - **Статус:** Open до Discovery.
 
-## 19. Типовые ошибки внедрения
+## 20. Типовые ошибки внедрения
 
 | № | Ошибка | Причина | Последствие | Решение |
 |---:|---|---|---|---|
@@ -639,7 +690,7 @@ Cloud и On-Premise рассматриваются отдельно. В коро
 | 79 | Backup не тестировали на восстановление | Формальный контроль | Rollback не работает | Restore drill |
 | 80 | Нет hypercare и support RACI | Проект закрыт сразу | Инциденты не имеют owner | Hypercare plan |
 
-## 20. Implementation Roadmap
+## 21. Implementation Roadmap
 
 | Этап | Результат | Минимальные артефакты | Критерий готовности |
 |---:|---|---|---|
