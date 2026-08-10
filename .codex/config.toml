@@ -1,0 +1,12 @@
+# Project-scoped Codex configuration.
+# Loaded only when this repository is trusted.
+
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+web_search = "live"
+
+[sandbox_workspace_write]
+network_access = true
+writable_roots = []
+exclude_tmpdir_env_var = true
+exclude_slash_tmp = true

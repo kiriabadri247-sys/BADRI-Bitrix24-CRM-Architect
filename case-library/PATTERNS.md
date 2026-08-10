@@ -122,8 +122,8 @@ Lead or Qualified Request -> Contact / Company -> Deal Pipeline
 - **Когда применять:** entity has meaningful states, allowed transitions, exceptions and SLA.
 - **Решение:** Smart Process stages represent states; tasks represent work needed to change state.
 - **Архитектура:** create → validate → active states → review → terminal outcome → archive/reopen.
-- **Контроль:** transition gates, required fields by stage, re-entry and loop protection.
-- **Ограничения:** excessive stages reduce adoption; lifecycle depends on tariff/version and is tested on target portal.
+- **Контроль:** transition gate is an architectural requirement; required fields by stage, re-entry and loop protection.
+- **Ограничения:** gate implementation is selected after portal verification from available required fields, permissions, robots, business processes or external validation; excessive stages reduce adoption, and lifecycle depends on tariff/version. Официальная проверка обязательности по стадиям: [пользовательские поля в счетах и смарт-процессах](https://helpdesk.bitrix24.ru/open/22088566/) (проверено 2026-08-10).
 
 ### 3.4 Relationship Pattern
 
@@ -243,7 +243,7 @@ Customer -> Support Case -> SLA / Owner -> Resolution
 - **Данные:** event ID, object reference, version/timestamp and minimal payload.
 - **Метод:** verified inbound/outbound webhook scenario or application event.
 - **Контроль ошибок:** authentication, dedup, ordering, replay, DLQ and correlation.
-- **Ограничения:** webhook URL is a secret; delivery may repeat or arrive out of order.
+- **Ограничения:** webhook URL is a secret. The handler is designed defensively for duplicate delivery, unknown outcomes and changed ordering; this is an architectural safeguard, not a universal Bitrix24 guarantee of at-least-once or unordered delivery. The exact event contract is verified on its official page, for example [`event.bind`](https://apidocs.bitrix24.ru/api-reference/events/event-bind.html) (checked 2026-08-10).
 
 ### 6.3 External System Master Pattern
 
